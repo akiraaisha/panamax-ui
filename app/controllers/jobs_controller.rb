@@ -9,7 +9,7 @@ class JobsController < ApplicationController
   end
 
   def show
-    respond_with Job.find(params[:key]).with_step_status!
+    respond_with Job.find(params[:key]).with_template!.with_step_status!
   end
 
   def create

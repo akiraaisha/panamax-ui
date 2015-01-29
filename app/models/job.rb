@@ -6,6 +6,11 @@ class Job < BaseResource
     integer :template_id
   end
 
+  def with_template!
+    self.template = JobTemplate.find(job_template_id)
+    self
+  end
+
   def with_step_status!
     steps.each do |step|
       step.status = step.get_status(completed_steps)

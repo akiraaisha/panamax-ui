@@ -74,6 +74,20 @@ describe Job do
     end
   end
 
+  describe 'with_template!' do
+    let(:fake_job_template) { double(:fake_job_template) }
+
+    before do
+      subject.job_template_id = 7
+      allow(JobTemplate).to receive(:find).with(7).and_return(fake_job_template)
+    end
+
+    it 'fetches and assigns the job template' do
+      subject.with_template!
+      expect(subject.template).to eq fake_job_template
+    end
+  end
+
   describe '#with_step_status!' do
     let(:step1) { Step.new }
     let(:step2) { Step.new }
